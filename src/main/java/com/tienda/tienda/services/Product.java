@@ -13,6 +13,7 @@ public class Product {
 	@GeneratedValue
 	private Integer id;
 	
+	
 	@NotEmpty(message = "El nombre del producto no puede estar vacio")
 	private String nombre;
 	
