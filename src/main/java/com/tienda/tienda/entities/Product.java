@@ -26,20 +26,42 @@ public class Product {
 	@NotNull(message="El precio no puede ser null")
 	private Double precio;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JsonIgnore
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Maker maker;
 	
 	
+	
+
+	/*
+	public Maker getMaker() {
+		return maker;
+	}
+	*/
+	
+	
+	
+	
+	
+
+
+	
+	//RETRIEVE ONLY THE NAME OF THE MAKER
+	public String getMaker() {
+		String nombre=maker.getNombre();
+		return nombre;
+	}
+	
+
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
 
 
-	public Maker getMaker() {
-		return maker;
-	}
+
+
+
 
 
 	public Product() {
@@ -53,7 +75,9 @@ public class Product {
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
+	
 	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -73,6 +97,8 @@ public class Product {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+	
+
 	
 	//private fabricante codigoFabricante;
 

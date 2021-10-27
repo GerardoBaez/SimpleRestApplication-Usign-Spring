@@ -1,5 +1,6 @@
 package com.tienda.tienda.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -42,9 +43,27 @@ public class Maker {
 		this.nombre = nombre;
 	}
 
+	/*
 	public List<Product> getProducts() {
 		return products;
 	}
+	*/
+	
+	
+	
+	// RETRIEVE ONLY THE NAME OF THE PRODUCT
+	public String[] getProducts() {
+		String[] myArray = new String [products.size()];
+		int i=0;
+		for(Product p:products) {
+			String nombre=p.getNombre();
+			myArray[i]=nombre;
+			i++;
+		}
+		return myArray;
+		
+	}
+	
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
