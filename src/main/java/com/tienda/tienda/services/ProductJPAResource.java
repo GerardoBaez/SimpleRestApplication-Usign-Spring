@@ -51,6 +51,20 @@ public class ProductJPAResource {
 		
 	}
 	
+	
+	
+	// FIND BY NAME
+		@GetMapping("/products/find/{nombre}")
+		public Product retrieveProductByName(@PathVariable String nombre) {
+			Optional<Product>opproduct=productrepo.findByNombre(nombre);
+			 if(!opproduct.isPresent())
+				 throw new ProductNotFoundExeption("nombre:"+" "+nombre);
+			 return opproduct.get();
+			
+			
+			
+		}
+	
 	//POST A PRODUCT
 	
 	@PostMapping("/products")

@@ -35,6 +35,19 @@ public class MakerJPAResource {
 	}
 	
 	
+	//FIND MAKER BY NAME
+		@GetMapping("/makers/find/{nombre}")
+		public Maker retrievemakerByName(@PathVariable String nombre){
+			Optional<Maker> opmaker = mrepo.findByNombre(nombre);
+			if(!opmaker.isPresent())
+				throw new MakerNotFoundExeption("nombre:"+" "+nombre);
+			
+			return opmaker.get();
+				
+		}
+		
+	
+	
 	// GET A SINGLE MAKER
 	@GetMapping("/makers/{id}")
 	public Maker retrievemaker(@PathVariable Integer id) {
