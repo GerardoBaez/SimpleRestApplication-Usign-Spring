@@ -1,4 +1,4 @@
-# :leaves: SimpleRestApplication-Usign-Spring
+# :leaves: SimpleRestApplication-Usign-SpringBoot
  Aplicación simple para implementar los diferentes métodos http usando spring
 
 
