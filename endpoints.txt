@@ -1,0 +1,36 @@
+--------------Makers-----------------------
+GET   FIND_BY_NAME  EJEMPLO-> http://localhost:8080/makers/find/Lenovo
+POST  POST_MAKER    EJEMPLO-> http://localhost:8080/makers
+{
+
+  "nombre": "chabelo"
+
+	
+}
+
+
+
+GET   GET_MAKER     EJEMPLO-> http://localhost:8080/makers/8
+GET   GET_MAKERS    EJEMPLO-> http://localhost:8080/makers
+
+
+-----------Products---------------------------
+GET  FIND_BY_NAME  EJEMPLO-> http://localhost:8080/products/find/Impresora HP Deskjet 3720
+GET  GET_PRODUCTS  EJEMPLO-> http://localhost:8080/products
+GET  GET_PRODUCT   EJEMPLO-> http://localhost:8080/products/12  
+POST POST_PRODUCT  EJEMPLO-> http://localhost:8080/products
+{
+    "nombre": "XBOX22",
+    "precio": 86.99,
+    "maker": {
+      "id": 10
+    }
+}
+
+DELETE DELETE_PRODUCT    EJEMPLO-> http://localhost:8080/products/12
+
+PUT CHANGEPRODUCTDETAILS  EJEMPLO-> http://localhost:8080/products/9
+
+
+
+
