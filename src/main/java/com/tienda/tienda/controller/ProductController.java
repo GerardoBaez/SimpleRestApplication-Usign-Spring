@@ -1,4 +1,4 @@
-package com.tienda.tienda.services;
+package com.tienda.tienda.controller;
 
 import java.net.URI;
 
@@ -21,12 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.tienda.tienda.entities.Product;
+import com.tienda.tienda.model.ProductModel;
+import com.tienda.tienda.service.ProductRepository;
 import com.tienda.tienda.services.exeptions.ProductNotFoundExeption;
 
 @RestController
 
-public class ProductJPAResource {
+public class ProductController {
 	
 	@Autowired
 	private ProductRepository productrepo;
@@ -34,7 +35,7 @@ public class ProductJPAResource {
 	
 	//GET ALL PRODUCTS
 	@GetMapping("/products")
-	public List<Product>retrieveProducts(){
+	public List<ProductModel>retrieveProducts(){
 		return productrepo.findAll();
 		
 	}
@@ -42,12 +43,11 @@ public class ProductJPAResource {
 	
 	// GET A SINGLE PRODUCT
 	@GetMapping("/products/{id}")
-	public Optional<Product> retrieveProduct(@PathVariable Integer id) {
-		Optional<Product>opproduct=productrepo.findById(id);
+	public Optional<ProductModel> retrieveProduct(@PathVariable Integer id) {
+		Optional<ProductModel>opproduct=productrepo.findById(id);
 		 if(!opproduct.isPresent())
 			 throw new ProductNotFoundExeption("id"+id);
 		 return opproduct;
-		
 		
 	}
 	
@@ -55,8 +55,8 @@ public class ProductJPAResource {
 	
 	// FIND BY NAME
 		@GetMapping("/products/find/{nombre}")
-		public Product retrieveProductByName(@PathVariable String nombre) {
-			Optional<Product>opproduct=productrepo.findByNombre(nombre);
+		public ProductModel retrieveProductByName(@PathVariable String nombre) {
+			Optional<ProductModel>opproduct=productrepo.findByNombre(nombre);
 			 if(!opproduct.isPresent())
 				 throw new ProductNotFoundExeption("nombre:"+" "+nombre);
 			 return opproduct.get();
@@ -68,8 +68,8 @@ public class ProductJPAResource {
 	//POST A PRODUCT
 	
 	@PostMapping("/products")
-	public ResponseEntity<Object> createpost(@Valid @RequestBody Product product) {
-		Product savedproduct = productrepo.save(product);
+	public ResponseEntity<Object> createpost(@Valid @RequestBody ProductModel product) {
+		ProductModel savedproduct = productrepo.save(product);
 		URI location= ServletUriComponentsBuilder.
 				fromCurrentRequest().path("{id}")
 				.buildAndExpand(savedproduct.getId()).toUri();
@@ -81,7 +81,7 @@ public class ProductJPAResource {
 	//DELETE A PRODUCT
 	@DeleteMapping("/products/{id}")
 	public void deleteProductById(@PathVariable Integer id) {
-		Optional<Product> opproduct =productrepo.findById(id);
+		Optional<ProductModel> opproduct =productrepo.findById(id);
 		if(!opproduct.isPresent()) 
 			 throw new ProductNotFoundExeption("id"+id);
 		
@@ -94,12 +94,12 @@ public class ProductJPAResource {
 	
 	//PUT A PRODUCT
 	@PutMapping("/products/{id}")
-	public ResponseEntity<Object> changeproduct(@PathVariable Integer id, @RequestBody Product product){
-		Optional<Product> opproduct = productrepo.findById(id);
+	public ResponseEntity<Object> changeproduct(@PathVariable Integer id, @RequestBody ProductModel product){
+		Optional<ProductModel> opproduct = productrepo.findById(id);
 		if (!opproduct.isPresent())
 			 throw new ProductNotFoundExeption("id"+id);
 		
-		Product pchange= opproduct.get();
+		ProductModel pchange= opproduct.get();
 		pchange.setId(id);
 		pchange.setNombre(product.getNombre());
 		pchange.setPrecio(product.getPrecio());

@@ -1,4 +1,7 @@
-package com.tienda.tienda.entities;
+package com.tienda.tienda.model;
+
+import java.io.Serializable;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +13,30 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+
+/**
+ * Clase ProductModel
+ * que representa a un producto
+ * en la base de datos
+ * @author Gerardo
+ *
+ */
+
 @Entity
-public class Product {
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ProductModel implements Serializable  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -27,23 +50,10 @@ public class Product {
 	private Double precio;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	private Maker maker;
+	@Autowired
+	private MakerModel maker;
 	
 	
-	
-
-	/*
-	public Maker getMaker() {
-		return maker;
-	}
-	*/
-	
-	
-	
-	
-	
-
-
 	
 	//RETRIEVE ONLY THE NAME OF THE MAKER
 	public String getMaker() {
@@ -60,44 +70,49 @@ public class Product {
 
 
 
-
-
-
-
-	public Product() {
-		super();
-	
-	}
-	
-	
-	public Product(Integer id, String nombre, Double precio) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.precio = precio;
-	
-	}
-	
-	
 	public Integer getId() {
 		return id;
 	}
+
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
+
 	public Double getPrecio() {
 		return precio;
 	}
+
+
+
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
+
+
+
+	public void setMaker(MakerModel maker) {
+		this.maker = maker;
+	}
+
+
+
+
 
 	
 	//private fabricante codigoFabricante;

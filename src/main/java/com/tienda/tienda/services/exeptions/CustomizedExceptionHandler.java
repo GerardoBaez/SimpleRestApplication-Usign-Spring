@@ -44,6 +44,15 @@ public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler{
 	}
 	
 	
+	@ExceptionHandler(MakerDuplicateException.class)
+	public final ResponseEntity<Object> handleDuplicateException(MakerDuplicateException ex, WebRequest request){
+		
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(),ex.getMessage(),request.getDescription(false));
+		return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
+	}
+	
+	
+	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		List <ObjectError> lista=ex.getBindingResult().getAllErrors();
