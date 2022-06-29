@@ -65,11 +65,7 @@ public class MakerModel implements Serializable {
 
 	
 	
-	public MakerModel(Integer id, @NotEmpty(message = "El nombre del provedor no puede estar vacio") String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-	}
+	
 
 	@Override
 	public String toString() {

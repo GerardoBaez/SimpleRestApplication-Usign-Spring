@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,7 +28,7 @@ import com.tienda.tienda.services.exeptions.MakerNotFoundExeption;
 @RestController
 public class MakerController {
 	
-	@Autowired
+	
 	private MakerRepository mrepo;
 	
 	
@@ -57,8 +58,8 @@ public class MakerController {
 	
 	
 	//FIND MAKER BY NAME
-	@GetMapping("/makers/find/{nombre}")
-	public ResponseEntity<?> findByName(@PathVariable String nombre){
+	@GetMapping("/makers/name")
+	public ResponseEntity<?> findByName(@RequestParam(name = "nombre", required = true) String nombre){
 		
 		MakerResponseDto makerresponsedto = makerservice.findByName(nombre);
 		
@@ -69,8 +70,8 @@ public class MakerController {
 	
 	
 	// GET A SINGLE MAKER
-	@GetMapping("/makers/{id}")
-	public ResponseEntity<?>  retrievemaker(@PathVariable Integer id) {
+	@GetMapping("/makers/id")
+	public ResponseEntity<?>  retrievemaker(@RequestParam (name="id", required = true) Integer id) {
 		
 		MakerResponseDto makerresponsedto = makerservice.findById(id);
 		

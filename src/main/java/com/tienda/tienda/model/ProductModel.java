@@ -21,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
@@ -33,6 +34,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -55,12 +57,13 @@ public class ProductModel implements Serializable  {
 	
 	
 	
+	/**
 	//RETRIEVE ONLY THE NAME OF THE MAKER
 	public String getMaker() {
 		String nombre=maker.getNombre();
 		return nombre;
 	}
-	
+	**/
 
 
 	@Override
@@ -68,47 +71,6 @@ public class ProductModel implements Serializable  {
 		return "Product [id=" + id + ", nombre=" + nombre + ", precio=" + precio + "]";
 	}
 
-
-
-	public Integer getId() {
-		return id;
-	}
-
-
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-
-	public Double getPrecio() {
-		return precio;
-	}
-
-
-
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
-
-
-
-	public void setMaker(MakerModel maker) {
-		this.maker = maker;
-	}
 
 
 
